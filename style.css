@@ -1,0 +1,116 @@
+@charset "UTF-8";
+
+:root {
+  --lightColor: #8b999c;
+}
+
+body {
+  background-color: #1B1C17;
+  background-attachment: fixed;
+  color: #fff;
+  font-family: sans-serif, Verdana, Geneva, Tahoma;
+  display: flex;
+  flex-direction: column;
+  /* Alinhou no centro, mas achatou também. */
+  /* Para melhorar isso, criei a div 'music-container' no html. A explicação disso é porque o body alinha apenas este 'music-container', e não os seus filhos. */
+  align-items: center;
+}
+
+#music-container{
+  background-image: linear-gradient(to bottom, #575852, #2F302B, #1B1C17);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Título da playlist */
+#playlist-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 3em;
+}
+
+/* Ajustando o tamanho da imagem */
+#cover {
+  width: 350px;
+}
+
+/* Container de informações da música */
+#below-cover {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 3em 0 1.5em 0;
+}
+
+/* Nome da música */
+#song-name {
+  font-size: 1.5em;
+  font-weight: bolder;
+}
+
+/* Nome da banda */
+#band-name {
+  color: var(--lightColor);
+}
+
+/* Like (Heart) */
+#like {
+  color: var(--lightColor);
+}
+
+/* Container de progresso */
+/* Criei para que fosse mais fácil de clicar/apertar, a área é maior que antes e não interfere nas divs filhas */
+#progress-container{
+  padding-bottom: 1em;
+  cursor: pointer;
+}
+
+/* Barra de progresso */
+#progress-bar {
+  background-color: var(--lightColor);
+  height: 3px; /* Dei uma altura para a div, mesmo ela não tendo conteúdo */
+  width: 100%;
+  border-radius: 15px;
+}
+
+/* Barra que está dentro da 'progress-bar' e que mostra o progresso atual */
+#current-progress {
+  --progress: 0%; /* Será usada no javascript */
+  height: inherit; /* Herda a altura da div pai, que no caso é 3px */
+  border-radius: inherit;
+  width: var(--progress); /* O progresso começa em 0% */
+  background-color: #fff;
+}
+
+/* Container do botão */
+#button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* Tag button */
+button {
+  background-color: inherit;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* Ajustando o tamanho dos botões */
+.button {
+  font-size: 1.5em;
+}
+
+/* Botão de navegação */
+.button-navigate {
+  font-size: 3em;
+}
+
+/* Botão Play/Pause */
+.button-biggest {
+  font-size: 4em;
+}

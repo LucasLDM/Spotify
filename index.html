@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <!-- Ícones -->
+    <link rel="shortcut icon" href="img/spotify-logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"/>
+    <title>Spotify</title>
+  </head>
+  <body>
+    <div id="music-container">
+      <h4 id="playlist-title">Masterpiece</h4>
+      <img id="cover" alt="Disc cover" />
+      <audio id="audio"></audio>
+      <div id="below-cover">
+        <div class="song-info">
+          <div id="song-name">Nome da música</div>
+          <div id="band-name">Nome da banda</div>
+        </div>
+        <button id="like" class="button"><i class="bi bi-heart"></i></button>
+      </div>
+      <div id="progress-container">
+          <div id="progress-bar">
+            <div id="current-progress"></div>
+          </div>
+      </div>
+      <div id="button-container">
+        <button id="shuffle" class="button">
+          <i class="bi bi-shuffle"></i>
+        </button>
+        <button id="previous" class="button button-navigate">
+          <i class="bi bi-skip-start-fill"></i>
+        </button>
+        <button id="play" class="button button-biggest">
+          <i class="bi bi-play-circle-fill"></i>
+        </button>
+        <button id="next" class="button button-navigate">
+          <i class="bi bi-skip-end-fill"></i>
+        </button>
+        <button id="repeat" class="button"><i class="bi bi-repeat"></i></button>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
