@@ -1,7 +1,14 @@
 # Spotify
 Um clone da versão mobile do Spotify incluindo 3 músicas.
 
-É possível reproduzir, pausar, despausar, avançar, voltar e escolher o tempo da música ao clicar na barra de reprodução.
+É possível, até o momento:
+  - Curtir música
+  - Reproduzir
+  - Pausar
+  - Despausar 
+  - Avançar
+  - Voltar
+  - Escolher o tempo da música ao clicar na barra de reprodução.
 
 Link para acessar: https://lucasldm.github.io/Spotify/
 #
