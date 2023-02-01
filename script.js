@@ -119,12 +119,12 @@ function jumpTo(event) {
 }
 
 function shufflePlaylist() {
+  
   index = Math.floor(Math.random() * playlist.length);
-  cover.src = `img/${playlist[index].file}.jpg`;
-  song.src = `songs/${playlist[index].file}.mp3`;
-  songName.innerText = playlist[index].songName;
-  bandName.innerText = playlist[index].artist;
+  
   initializeSong();
+  play.querySelector(".bi").classList.remove("bi-play-circle-fill");
+  play.querySelector(".bi").classList.add("bi-pause-circle-fill");
   song.play();
 }
 
