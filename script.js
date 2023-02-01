@@ -119,8 +119,6 @@ function jumpTo(event) {
 }
 
 function shufflePlaylist() {
-  // const playlist = [theLordAndMe, inThisShirt, ponPonPon];
-  // let index = 0;
   index = Math.floor(Math.random() * playlist.length);
   cover.src = `img/${playlist[index].file}.jpg`;
   song.src = `songs/${playlist[index].file}.mp3`;
