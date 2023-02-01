@@ -8,6 +8,7 @@ Um clone da versão mobile do Spotify incluindo 3 músicas.
   - Despausar 
   - Avançar
   - Voltar
+  - Gerar música aleatória
   - Escolher o tempo da música ao clicar na barra de reprodução.
 
 Link para acessar: https://lucasldm.github.io/Spotify/
