@@ -9,7 +9,8 @@ const currentProgress = document.getElementById("current-progress"); /* Para man
 const progressContainer = document.getElementById("progress-container");
 const heartSong = document.getElementById("like");
 let hearted = false;
-let isPlaying = false; 
+const shuffle = document.getElementById("shuffle");
+let isPlaying = false;
 
 const theLordAndMe = {
   songName: "The Lord and Me",
@@ -29,18 +30,18 @@ const ponPonPon = {
   file: "pon-pon-pon",
 };
 
-const playlist = Array(theLordAndMe, inThisShirt, ponPonPon);
-let index = 0; 
+const playlist = [theLordAndMe, inThisShirt, ponPonPon];
+let index = 1;
 
 /* Curtir música */
 function likeSong() {
-  if(hearted === false){
+  if (hearted === false) {
     heartSong.querySelector(".bi").classList.remove("bi-heart");
     heartSong.querySelector(".bi").classList.add("bi-heart-fill");
     heartSong.style.color = "#ff3434";
     hearted = true;
-  }
-  else{
+  } 
+  else {
     heartSong.querySelector(".bi").classList.remove("bi-heart-fill");
     heartSong.querySelector(".bi").classList.add("bi-heart");
     heartSong.style.color = "#8b999c";
@@ -72,7 +73,8 @@ function pauseSong() {
 function playPauseDecider() {
   if (isPlaying === true) {
     pauseSong();
-  } else {
+  } 
+  else {
     playSong();
   }
 }
@@ -80,7 +82,8 @@ function playPauseDecider() {
 function nextSong() {
   if (index === playlist.length - 1) {
     index = 0;
-  } else {
+  } 
+  else {
     index = index + 1;
   }
   initializeSong();
@@ -90,7 +93,8 @@ function nextSong() {
 function previousSong() {
   if (index === 0) {
     index = playlist.length - 1;
-  } else {
+  } 
+  else {
     index = index - 1;
   }
   initializeSong();
@@ -114,9 +118,22 @@ function jumpTo(event) {
   song.currentTime = jumpToTime;
 }
 
+function shufflePlaylist() {
+  // const playlist = [theLordAndMe, inThisShirt, ponPonPon];
+  // let index = 0;
+  index = Math.floor(Math.random() * playlist.length);
+  cover.src = `img/${playlist[index].file}.jpg`;
+  song.src = `songs/${playlist[index].file}.mp3`;
+  songName.innerText = playlist[index].songName;
+  bandName.innerText = playlist[index].artist;
+  initializeSong();
+  song.play();
+}
+
 initializeSong(); /* Necessário pra funcionar */
 
 heartSong.addEventListener("click", likeSong);
+shuffle.addEventListener("click", shufflePlaylist);
 play.addEventListener("click", playPauseDecider);
 next.addEventListener("click", nextSong);
 previous.addEventListener("click", previousSong);
