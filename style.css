@@ -114,3 +114,8 @@ button {
 .button-biggest {
   font-size: 4em;
 }
+
+/* Será criada essa classe no botão shuffle quando o usuário clicar nele */
+.button-active{
+  color: rgb(88, 218, 13);
+}

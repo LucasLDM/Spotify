@@ -8,20 +8,24 @@ const previous = document.getElementById("previous");
 const currentProgress = document.getElementById("current-progress"); /* Para manipular a linha de progresso */
 const progressContainer = document.getElementById("progress-container");
 const heartSong = document.getElementById("like");
+const shuffleButton = document.getElementById("shuffle");
+
 let hearted = false;
-const shuffle = document.getElementById("shuffle");
+let isShuffled = false;
 let isPlaying = false;
 
-const theLordAndMe = {
-  songName: "The Lord and Me",
-  artist: "Yung Lixo",
-  file: "the-lord-and-me",
-};
+/* Identidade de cada música */ 
 
 const inThisShirt = {
   songName: "In This Shirt",
   artist: "The Irrepressibles",
   file: "in-this-shirt",
+};
+
+const theLordAndMe = {
+  songName: "The Lord and Me",
+  artist: "Yung Lixo",
+  file: "the-lord-and-me",
 };
 
 const ponPonPon = {
@@ -30,8 +34,9 @@ const ponPonPon = {
   file: "pon-pon-pon",
 };
 
-const playlist = [theLordAndMe, inThisShirt, ponPonPon];
-let index = 1;
+const originalPlaylist = [inThisShirt, theLordAndMe, ponPonPon];
+let sortedPlaylist = [...originalPlaylist]; /* Cópia da originalPlaylist */
+let index = 0;
 
 /* Curtir música */
 function likeSong() {
@@ -50,10 +55,10 @@ function likeSong() {
 }
 
 function initializeSong() {
-  cover.src = `img/${playlist[index].file}.jpg`;
-  song.src = `songs/${playlist[index].file}.mp3`;
-  songName.innerText = playlist[index].songName;
-  bandName.innerText = playlist[index].artist;
+  cover.src = `img/${sortedPlaylist[index].file}.jpg`;
+  song.src = `songs/${sortedPlaylist[index].file}.mp3`;
+  songName.innerText = sortedPlaylist[index].songName;
+  bandName.innerText = sortedPlaylist[index].artist;
 }
 
 function playSong() {
@@ -80,7 +85,7 @@ function playPauseDecider() {
 }
 
 function nextSong() {
-  if (index === playlist.length - 1) {
+  if (index === sortedPlaylist.length - 1) {
     index = 0;
   } 
   else {
@@ -92,7 +97,7 @@ function nextSong() {
 
 function previousSong() {
   if (index === 0) {
-    index = playlist.length - 1;
+    index = sortedPlaylist.length - 1;
   } 
   else {
     index = index - 1;
@@ -118,20 +123,47 @@ function jumpTo(event) {
   song.currentTime = jumpToTime;
 }
 
-function shufflePlaylist() {
+/* A função pega um array como argumento e returna uma versão embaralhada */
+function shuffleArray(preShuffleArray){
+
+  let size = preShuffleArray.length;
+  let currentIndex = size - 1;
+
+  /* Repete enquanto não for o primeiro elemento */
+  while(currentIndex > 0){
+    /* Gerando um número aleatório entre 0 e o tamanho do array */
+    let randomIndex = Math.floor(Math.random() * size);
+    /* Salvando o valor do index atual na variável auxiliar */
+    let aux = preShuffleArray[currentIndex];
+    /* Trocando os valores do array */
+    preShuffleArray[currentIndex] = preShuffleArray[randomIndex];
+    preShuffleArray[randomIndex] = aux;
+    currentIndex -= 1;
+  }
+}
+
+function shuffleButtonClicked(){
+
+  if(isShuffled == false){
+    isShuffled = true;
+    /* Embaralhando a cópia do array */
+    shuffleArray(sortedPlaylist);
+    /* O botão fica verde ao clicar */ 
+    shuffleButton.classList.add("button-active");
+  }
+  else{
+    /* Resetando a playlist para a ordem original */
+    isShuffled = false;
+    sortedPlaylist = [...originalPlaylist];
+    shuffleButton.classList.remove("button-active");
+  }
   
-  index = Math.floor(Math.random() * playlist.length);
-  
-  initializeSong();
-  play.querySelector(".bi").classList.remove("bi-play-circle-fill");
-  play.querySelector(".bi").classList.add("bi-pause-circle-fill");
-  song.play();
 }
 
 initializeSong(); /* Necessário pra funcionar */
 
 heartSong.addEventListener("click", likeSong);
-shuffle.addEventListener("click", shufflePlaylist);
+shuffleButton.addEventListener("click", shuffleButtonClicked);
 play.addEventListener("click", playPauseDecider);
 next.addEventListener("click", nextSong);
 previous.addEventListener("click", previousSong);
